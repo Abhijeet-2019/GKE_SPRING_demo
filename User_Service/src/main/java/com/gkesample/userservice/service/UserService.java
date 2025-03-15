@@ -40,7 +40,7 @@ public class UserService
         user2.setUserName ("bbb");
         user2.setAddress ("560067");
         user2.setAuthenticated (true);
-        log.info ("Fetced the user2  {}", user.toString ());
+        log.info ("Fetced the user2  {}", user2.toString ());
         List<User> userList = new ArrayList ();
         userList.add (user);
         userList.add (user2);

@@ -17,9 +17,9 @@ public class UserServiceApp
     
     public static void main (String[] args)
         {
-        log.info ("Starting the User service application");
+        log.info ("Starting the User service application------------");
         SpringApplication.run (UserServiceApp.class);
-        log.info ("Started the user service application");
+        log.info ("Started the user service application------------");
         
         }
     }
