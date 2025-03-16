@@ -30,5 +30,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push service Discovery to Docker..
-        run: mvn package dockerfile:push --file Discovery/pom.xml
+      - name: Build & push service UserService to Docker..
+        run: mvn package dockerfile:push --file User_Service/pom.xml
