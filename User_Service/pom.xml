@@ -76,7 +76,7 @@
                 </execution>
             </executions>
                 <configuration>
-                    <repository>user-service</repository>
+                    <repository>User_Service</repository>
                     <tag>${project.version}</tag>
                 </configuration>
                 <dependencies>
