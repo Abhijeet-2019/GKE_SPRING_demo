@@ -35,6 +35,3 @@ jobs:
 
       - name: Buid and Push Docker Image
         run: mvn package dockerfile:push --file User_Service/pom.xml
-        env:
-          MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
