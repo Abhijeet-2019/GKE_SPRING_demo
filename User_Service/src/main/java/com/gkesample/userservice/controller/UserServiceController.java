@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,11 +25,21 @@ public class UserServiceController
         User user = userService.validate (userName);
         return ResponseEntity.ok ().body (user);
         }
-
+    
     @GetMapping("/fetchUserByCode")
-        public  ResponseEntity<List<User>> fetchUsersByCode(@RequestParam(name="pincode")String pincode){
+    public ResponseEntity<List<User>> fetchUsersByCode (@RequestParam(name = "pincode") String pincode)
+        {
         log.info ("Recived the  Request to fetch user in pincode{}", pincode);
         List<User> userList = userService.fetchUserByPincode (pincode);
         return ResponseEntity.ok ().body (userList);
         }
+    
+    @PostMapping("/addUsers")
+    public ResponseEntity<String> addUsers (@RequestBody User users)
+        {
+        log.info ("Recived the  Request to fetch user in pin Code {}", users.getUserId ());
+        return ResponseEntity.ok ().body ("User added Successfully");
+        }
+        
+        
     }
