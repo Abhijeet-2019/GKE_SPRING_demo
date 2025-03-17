@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.gkesample.userservice</groupId>
-    <artifactId>User_Service</artifactId>
+    <artifactId>user-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -76,10 +76,8 @@
                 </execution>
             </executions>
                 <configuration>
-                    <repository>sultan2023/user_service</repository> <!-- FIX THIS -->
-                    <buildArgs>
-                        <JAR_FILE>target/User_Service-1.0-SNAPSHOT.jar</JAR_FILE>
-                    </buildArgs>
+                    <repository>user-service</repository>
+                    <tag>${project.version}</tag>
                 </configuration>
                 <dependencies>
                     <!-- To make this work on JDK 9+ -->
