@@ -31,8 +31,6 @@ jobs:
       - name: Set Environment Variable
         run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
-      - name: Apply Kubernetes Deployment
-        run: kubectl apply -f k8s/deployment.yaml
 
       - name: Deploy to GKE
         run: |
