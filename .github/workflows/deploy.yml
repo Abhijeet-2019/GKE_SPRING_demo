@@ -22,8 +22,8 @@ jobs:
           credentials_json: ${{ secrets.GKE_SA_KEY }}
 
       - name: Configure Kubectl
-        run: |
-          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER}} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GKE_PROJECT_ID }}
+        run: |          
+          gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project my-sample-gke-demo
 
       - name: Deploy to GKE
         run: |
