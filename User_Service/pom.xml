@@ -56,6 +56,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>user-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -76,8 +77,12 @@
                 </execution>
             </executions>
                 <configuration>
-                    <repository>user-service</repository>
+                    <repository>sultan2023/user-service</repository>  <!-- Update this -->
                     <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>target/user-service.jar</JAR_FILE>  <!-- Ensure correct JAR file -->
+                    </buildArgs>
+                    <dockerfile>Dockerfile</dockerfile>  <!-- Ensure Dockerfile is in root project directory -->
                 </configuration>
                 <dependencies>
                     <!-- To make this work on JDK 9+ -->
