@@ -1,0 +1,31 @@
+# This work flow is used to deploy in GKE...
+
+name: Deploy to GKE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository------
+        uses: actions/checkout@v4
+
+      - name: Authenticate with Google Cloud---
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+
+      - name: Configure Kubectl
+        run: |
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER}} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GKE_PROJECT_ID }}
+
+      - name: Deploy to GKE
+        run: |
+              kubectl apply -f k8s/deployment.yaml
+              kubectl apply -f k8s/service.yaml
