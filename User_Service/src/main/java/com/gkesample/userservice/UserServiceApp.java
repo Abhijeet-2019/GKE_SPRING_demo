@@ -1,5 +1,6 @@
 package com.gkesample.userservice;
 
+import java.time.LocalTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +20,8 @@ public class UserServiceApp
     
     public static void main (String[] args)
         {
-        log.info ("Starting the User service application------------");
+        LocalTime mylocalTime = LocalTime.now();
+        log.info ("Starting the User service application---------{}---",mylocalTime);
         SpringApplication.run (UserServiceApp.class);
         log.info ("Started the user service application------------");
         
