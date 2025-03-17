@@ -25,6 +25,11 @@ jobs:
         run: |          
           gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project my-sample-gke-demo
 
+      - name: Install GKE Auth Plugin
+        run: |
+          gcloud components install gke-gcloud-auth-plugin
+          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
       - name: Deploy to GKE
         run: |
               kubectl apply -f k8s/deployment.yaml
