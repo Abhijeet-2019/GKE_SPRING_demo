@@ -23,14 +23,7 @@ jobs:
 
       - name: Configure Kubectl
         run: |          
-          gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project my-sample-gke-demo
-
-      - name: Install GKE Auth Plugin (Debian/Ubuntu)
-        run: sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
-
-      - name: Set Environment Variable
-        run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
-
+          gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project enhanced-idiom-454211-q9
 
       - name: Deploy to GKE
         run: |

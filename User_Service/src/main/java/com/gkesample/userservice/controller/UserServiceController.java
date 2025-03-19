@@ -3,6 +3,7 @@ package com.gkesample.userservice.controller;
 
 import com.gkesample.userservice.domain.User;
 import com.gkesample.userservice.service.UserService;
+import com.gkesample.userservice.utils.LogExecutionTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class UserServiceController
         }
     
     @GetMapping("/fetchUserByCode")
+    @LogExecutionTime
     public ResponseEntity<List<User>> fetchUsersByCode (@RequestParam(name = "pincode") String pincode)
         {
         log.info ("Recived the  Request to fetch user in pincode{}", pincode);
@@ -35,11 +37,11 @@ public class UserServiceController
         }
     
     @PostMapping("/addUsers")
+    @LogExecutionTime
     public ResponseEntity<String> addUsers (@RequestBody User users)
         {
-        log.info ("Recived the  Request to fetch user in pin Code {}", users.getUserId ());
+        log.info ("Received the  Request to fetch user in pin Code {}", users.getUserId ());
         return ResponseEntity.ok ().body ("User added Successfully");
         }
-        
         
     }
