@@ -21,7 +21,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GKE_SA_KEY }}
 
-      - name: Configure Kubectl
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+            gcloud components install gke-gcloud-auth-plugin
+            export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+      - name: Connect to GKE
         run: |          
           gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project enhanced-idiom-454211-q9
 
