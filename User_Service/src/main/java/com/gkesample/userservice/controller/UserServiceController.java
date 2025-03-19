@@ -20,6 +20,7 @@ public class UserServiceController
     UserService userService;
     
     @GetMapping("/validate")
+    @LogExecutionTime
     public ResponseEntity<User> validateUsers (@RequestParam(name = "userName") String userName)
         {
         log.info ("Recived the validation Request for UserName{}", userName);
@@ -42,6 +43,15 @@ public class UserServiceController
         {
         log.info ("Received the  Request to fetch user in pin Code {}", users.getUserId ());
         return ResponseEntity.ok ().body ("User added Successfully");
+        }
+
+    @GetMapping("/Hello")
+    @LogExecutionTime
+    public ResponseEntity<User> testMethod (@RequestParam(name = "userName") String userName)
+        {
+        log.info ("Recived the Test mathod{} for HELLO -----", userName);
+        User user = userService.validate (userName);
+        return ResponseEntity.ok ().body (user);
         }
         
     }
