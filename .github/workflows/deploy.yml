@@ -1,5 +1,4 @@
-# This work flow is used to deploy in GKE...
-
+# This workflow deploys to GKE
 name: Deploy to GKE
 
 on:
@@ -25,37 +24,28 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
-
-          # Remove old key if it exists
+          
+          # Remove old GCP key (if any)
           sudo rm -f /usr/share/keyrings/cloud.google.gpg
-
-          # Add the correct Google Cloud public key
-          curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo tee /usr/share/keyrings/cloud.google.gpg > /dev/null
-
-          # Add Google Cloud SDK repository with the correct key
+          
+          # Add correct Google Cloud public key
+          curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.gpg > /dev/null
+          
+          # Add Google Cloud SDK repository
           echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-
-          # Update package list again after adding the repo
+          
+          # Update package list and install the GKE authentication plugin
           sudo apt-get update
-
-          # Install the GKE authentication plugin
           sudo apt-get install -y google-cloud-cli-gke-gcloud-auth-plugin
 
           # Set the environment variable for authentication
           echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
-      
-      
-
-      - name: Install gke-gcloud-auth-plugin
-        run: |
-            gcloud components install gke-gcloud-auth-plugin
-            export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
       - name: Connect to GKE
-        run: |          
+        run: |
           gcloud container clusters get-credentials master-demo-cluster --zone us-central1-c --project enhanced-idiom-454211-q9
 
       - name: Deploy to GKE
         run: |
-              kubectl apply -f k8s/deployment.yaml
-              kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
